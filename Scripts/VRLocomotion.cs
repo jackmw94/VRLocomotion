@@ -5,12 +5,10 @@ using UnityEngine;
 public class VRLocomotion : MonoBehaviour
 {
     [SerializeField] private Transform headTransform;
-    [SerializeField] private Transform trackingSpace;
+    [SerializeField] private VRLocomotionController[] controllers;
     [Space]
     [SerializeField] private bool allowScaling = false;
     [SerializeField] private float lerpSpeed = 30f;
-    [Space]
-    [SerializeField] private VRLocomotionController[] controllers;
 
     private Dictionary<VRLocomotionController, Transform> markers = new();
     
