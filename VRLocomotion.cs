@@ -6,6 +6,8 @@ public class VRLocomotion : MonoBehaviour
 {
     [SerializeField] private Transform headTransform;
     [SerializeField] private Transform trackingSpace;
+    [Space]
+    [SerializeField] private bool allowScaling = false;
     [SerializeField] private float lerpSpeed = 30f;
     [Space]
     [SerializeField] private VRLocomotionController[] controllers;
@@ -59,28 +61,20 @@ public class VRLocomotion : MonoBehaviour
 
     private void TwoHandedLocomotion(VRLocomotionController controller1, VRLocomotionController controller2)
     {
-        Transform controller1Marker = GetMarker(controller1);
-        Transform controller2Marker = GetMarker(controller2);
-        
-        float markerDistance = (controller1Marker.position - controller2Marker.position).magnitude;
-        float controllerDistance = (controller1.transform.position - controller2.transform.position).magnitude;
+        if (allowScaling)
+        {
+            float scaleChange = GetScaleChange(controller1, controller2);
 
-        float scaleChange = (markerDistance / controllerDistance);
-        float targetScale = transform.localScale.x * scaleChange;
-        
-        controllerProxy.localScale = Vector3.one;
-        MatchTransforms(controllerProxy, headTransform);
-        
-        playerProxy.parent = controllerProxy;
-        controllerProxy.localScale = targetScale * Vector3.one;
-        playerProxy.SetParent(null);
-        
-        transform.localScale = Mathf.Lerp(transform.localScale.x, controllerProxy.localScale.x, lerpSpeed * Time.deltaTime) * Vector3.one;
-        
-        
-        // move
+            controllerProxy.localScale = Vector3.one;
+            controllerProxy.position = headTransform.position;
+
+            transform.parent = controllerProxy;
+            controllerProxy.localScale = scaleChange * Vector3.one;
+            transform.SetParent(null);
+        }
+
+
         Pose targetPose = GetAverageTargetPose(controller1, controller2);
-        
         transform.position = Vector3.Lerp(transform.position, targetPose.position, lerpSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetPose.rotation, lerpSpeed * Time.deltaTime);
     }
@@ -91,6 +85,18 @@ public class VRLocomotion : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetPose.position, lerpSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetPose.rotation, lerpSpeed * Time.deltaTime);
+    }
+
+    private float GetScaleChange(VRLocomotionController controller1, VRLocomotionController controller2)
+    {
+        Transform controller1Marker = GetMarker(controller1);
+        Transform controller2Marker = GetMarker(controller2);
+        
+        float markerDistance = (controller1Marker.position - controller2Marker.position).magnitude;
+        float controllerDistance = (controller1.transform.position - controller2.transform.position).magnitude;
+
+        float scaleChange = (markerDistance / controllerDistance);
+        return scaleChange;
     }
 
     private Pose GetAverageTargetPose(VRLocomotionController controller1, VRLocomotionController controller2)
