@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class VRLocomotionOVRController : VRLocomotionController
+public class OVRLocomotionController : VRLocomotionController
 {
     [SerializeField] private OVRInput.Controller controller;
     [SerializeField] private OVRInput.Button button;
