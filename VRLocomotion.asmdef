@@ -11,6 +11,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.meta.xr.sdk.core",
+            "expression": "63.0.0",
+            "define": "OVR_LOCOMOTION"
+        }
+    ],
     "noEngineReferences": false
 }

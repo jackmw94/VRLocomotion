@@ -9,8 +9,5 @@
     "player",
     "locomotion",
 	"xr"
-  ],
-  "dependencies": {
-    "com.unity.xr.oculus": "4.2.0"
-  }
+  ]
 }
