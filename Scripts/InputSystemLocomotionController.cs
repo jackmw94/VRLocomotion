@@ -1,6 +1,8 @@
 using UnityEngine;
 
-#if ENABLE_INPUT_SYSTEM
+#if NEW_INPUT_SYSTEM_LOCOMOTION
+using UnityEngine.InputSystem;
+
 public class InputSystemLocomotionController : VRLocomotionController
 {
     [SerializeField] private InputAction inputAction;

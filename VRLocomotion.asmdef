@@ -2,7 +2,8 @@
     "name": "VRLocomotion",
     "rootNamespace": "",
     "references": [
-        "Oculus.VR"
+        "Oculus.VR",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -16,6 +17,11 @@
             "name": "com.meta.xr.sdk.core",
             "expression": "63.0.0",
             "define": "OVR_LOCOMOTION"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.7.0",
+            "define": "NEW_INPUT_SYSTEM_LOCOMOTION"
         }
     ],
     "noEngineReferences": false
