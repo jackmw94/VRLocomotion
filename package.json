@@ -1,5 +1,5 @@
 {
-  "name": "com.jackmw94.VRLocomotion",
+  "name": "com.jackmw94.vr-locomotion",
   "displayName": "VR Locomotion",
   "version": "1.0.0",
   "description": "A very simple method of navigating in VR via 'swimming'. Grab and pull with controllers to move + (optional) scaling when controllers are squeeze or pulled apart.",
