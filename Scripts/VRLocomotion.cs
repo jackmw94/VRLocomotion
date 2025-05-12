@@ -19,6 +19,11 @@ public class VRLocomotion : MonoBehaviour
 
     private void Awake()
     {
+        if (controllers.Length == 0)
+        {
+            Debug.LogError($"There are no controllers assigned in the VRLocomotion script on {gameObject}", gameObject);
+        }
+    
         playerProxy = new GameObject("[Generated] Player Proxy") { hideFlags = HideFlags.DontSave }.transform;
         controllerProxy = new GameObject("[Generated] Main Controller Proxy") { hideFlags = HideFlags.DontSave }.transform;
     }
