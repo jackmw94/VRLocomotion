@@ -8,7 +8,7 @@ public class VRLocomotion : MonoBehaviour
     [SerializeField] private VRLocomotionController[] controllers;
     [Space]
     [SerializeField] private bool allowScaling = false;
-    [SerializeField] private float lerpSpeed = 30f;
+    [SerializeField] private float lerpSpeed = 20f;
 
     private Dictionary<VRLocomotionController, Transform> markers = new();
     
